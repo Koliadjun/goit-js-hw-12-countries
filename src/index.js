@@ -1,5 +1,9 @@
 import fetchCountries from "./js/fetchCountries.js";
 import countryCardTmp from './templates/countryTpl.hbs'
+import '@pnotify/core/dist/BrightTheme.css';
+
+import { error } from '@pnotify/core';
+
 const debounce = require('lodash.debounce');
 
 const refs = {
@@ -27,6 +31,12 @@ const render = (data) => {
         }
         if (countryQuantity > 10) {
             console.log(`more than 10 ${countryQuantity}`)
+
+
+            const myError = error({
+                text: "Too many matches found. Please enter a more specific query"
+            });
+
         }
     } else {
         console.log('result 0');
