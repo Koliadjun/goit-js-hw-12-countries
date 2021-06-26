@@ -1,0 +1,21 @@
+    <h1 class="country-card-title" data-counties="country">{{name}}</h1>
+    <ul class="counrty-card-list">
+        <li class="country-card-list-item">
+            <h3>Capital:</h3>
+            <p data-counties="capital">{{capital}}</p>
+        </li>
+        <li class="country-card-list-item">
+            <h3>Population:</h3>
+            <p data-counties="population">{{population}}</p>
+        </li>
+        <li class="country-card-list-item">
+            <h3>Language:</h3>
+            <ul class="language-list" data-counties="language">
+            {{#each languages}}
+           <li class="language-list-item">{{this.name}}</li>
+            {{/each}}
+
+            </ul>
+        </li>
+        <img data-counties="flag" src="{{flag}}" alt="{{name}} flag"  width="300" />
+    </ul>
