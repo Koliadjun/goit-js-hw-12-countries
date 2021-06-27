@@ -1,13 +1,12 @@
 import fetchCountries from "./js/fetchCountries.js";
-import countryCardTmp from './templates/countryTpl.hbs'
-const debounce = require('lodash.debounce');
-// import notification from "./js/notification.js"
-
+import countryCardTmp from "./templates/countryTpl.hbs";
+import resultTmp from "./templates/resultTmp.hbs";
+import debounce from "lodash.debounce";
 import "@pnotify/core/dist/PNotify.css";
 import "@pnotify/core/dist/BrightTheme.css";
 import "@pnotify/mobile/dist/PNotifyMobile.css"
 import "@pnotify/countdown/dist/PNotifyCountdown.css"
-import { alert, defaultModules, close } from '@pnotify/core';
+import { alert, defaultModules } from '@pnotify/core';
 import * as PNotifyCountdown from '@pnotify/countdown';
 import * as PNotifyMobile from '@pnotify/mobile/';
 defaultModules.set(PNotifyMobile, {})
@@ -62,10 +61,13 @@ const notificationOptions = {
     },
 }
 
-
+function selectedElement(el) {
+    refs.input.value = el.textContent;
+}
 const refs = {
     countryCard: document.querySelector('.country-card'),
     input: document.querySelector('#search'),
+    resultList: document.querySelector('.result-list'),
 }
 
 const onSearch = (event) => {
@@ -73,33 +75,37 @@ const onSearch = (event) => {
     if (!value) { return }
     fetchCountries(event.target.value).then(render);
 }
-const renderCard = (data) => {
 
+const renderCard = (data) => {
     refs.countryCard.insertAdjacentHTML("beforeend", countryCardTmp(data))
 }
-const render = (data) => {
+
+const renderResultList = (data) => {
+    refs.resultList.innerHTML = '';
+    const resultArray = data.map(country => country.name);
+    refs.resultList.insertAdjacentHTML("beforeend", resultTmp({ countryName: resultArray }));
+    const allResultRefs = refs.resultList.querySelectorAll('li');
+    allResultRefs.forEach((el) => { el.setAttribute("onclick", "selectedElement(this)") })
+};
+
+const render = (data,) => {
     const countryQuantity = data.length;
     refs.countryCard.innerHTML = '';
     if (countryQuantity) {
         if (countryQuantity === 1) {
             renderCard(data[0]);
-
             alert(notificationOptions.successResult);
         }
         if (countryQuantity > 1 && countryQuantity <= 10) {
-
+            renderResultList(data);
             alert(notificationOptions.coupleResults);
-
         }
         if (countryQuantity > 10) {
             alert(notificationOptions.toMachResults);
         }
     } else {
         alert(notificationOptions.noResult);
-
-
     }
-
-
 }
+
 refs.input.addEventListener('input', debounce(onSearch, 500));
