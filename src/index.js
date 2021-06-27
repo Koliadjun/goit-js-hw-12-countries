@@ -6,6 +6,7 @@ import "@pnotify/core/dist/PNotify.css";
 import "@pnotify/core/dist/BrightTheme.css";
 import "@pnotify/mobile/dist/PNotifyMobile.css";
 import "@pnotify/countdown/dist/PNotifyCountdown.css";
+import './sass/main.scss';
 import { alert, defaultModules } from '@pnotify/core';
 import * as PNotifyCountdown from '@pnotify/countdown';
 import * as PNotifyMobile from '@pnotify/mobile/';
@@ -76,6 +77,7 @@ const onSearch = (event) => {
 
 const renderCard = (data) => {
     refs.countryCard.insertAdjacentHTML("beforeend", countryCardTmp(data));
+    refs.resultList.innerHTML = '';
 };
 
 const renderResultList = (data) => {
@@ -92,20 +94,30 @@ const render = (data) => {
         if (countryQuantity === 1) {
             renderCard(data[0]);
             alert(notificationOptions.successResult);
+            refs.resultList.classList.add('hidden')
+            refs.input.value = '';
         }
         if (countryQuantity > 1 && countryQuantity <= 10) {
+            refs.resultList.classList.remove('hidden')
             renderResultList(data);
             alert(notificationOptions.coupleResults);
         }
         if (countryQuantity > 10) {
             alert(notificationOptions.toMachResults);
+            refs.resultList.classList.add('hidden')
         }
     } else {
+        refs.resultList.classList.add('hidden')
         alert(notificationOptions.noResult);
     }
 };
 
 refs.input.addEventListener('input', debounce(onSearch, 500));
+refs.input.addEventListener('keyup', (e) => {
+    if (!e.target.value) {
+        refs.resultList.classList.add('hidden')
+    }
+})
 refs.resultList.addEventListener('click', function selected(e) {
     refs.input.value = '';
     refs.input.value = e.target.textContent;
