@@ -1,1 +1,0 @@
-{"version":3,"sources":["js/select.js"],"names":["selectedElement","el","refs","input","value","textContent"],"mappings":";AAAA,SAASA,EAAgBC,GACrBC,KAAKC,MAAMC,MAAQH,EAAGI","file":"select.669f0563.js","sourceRoot":"../src","sourcesContent":["function selectedElement(el) {\n    refs.input.value = el.textContent;\n}"]}
