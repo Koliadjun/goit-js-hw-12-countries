@@ -53,10 +53,12 @@ body {
   text-align: center;
 }
 .country-card-list {
-  /* display: flex; */
-  width: 50%;
-
   margin-right: 30px;
+  margin-bottom: 30px;
+  width: 50%;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0;
+  }
 }
 .country-card-list-item {
   justify-content: space-between;
