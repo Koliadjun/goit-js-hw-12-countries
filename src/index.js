@@ -10,6 +10,7 @@ import { alert, defaultModules } from '@pnotify/core';
 import * as PNotifyCountdown from '@pnotify/countdown';
 import * as PNotifyMobile from '@pnotify/mobile/';
 defaultModules.set(PNotifyMobile, {})
+const event = new Event('input');
 
 const notificationOptions = {
     toMachResults: {
@@ -61,9 +62,6 @@ const notificationOptions = {
     },
 }
 
-function selectedElement(el) {
-    refs.input.value = el.textContent;
-}
 const refs = {
     countryCard: document.querySelector('.country-card'),
     input: document.querySelector('#search'),
@@ -84,11 +82,10 @@ const renderResultList = (data) => {
     refs.resultList.innerHTML = '';
     const resultArray = data.map(country => country.name);
     refs.resultList.insertAdjacentHTML("beforeend", resultTmp({ countryName: resultArray }));
-    const allResultRefs = refs.resultList.querySelectorAll('li');
-    allResultRefs.forEach((el) => { el.setAttribute("onclick", "selectedElement(this)") })
+
 };
 
-const render = (data,) => {
+const render = (data) => {
     const countryQuantity = data.length;
     refs.countryCard.innerHTML = '';
     if (countryQuantity) {
@@ -109,3 +106,9 @@ const render = (data,) => {
 }
 
 refs.input.addEventListener('input', debounce(onSearch, 500));
+refs.resultList.addEventListener('click', function selected(e) {
+    refs.input.value = '';
+    refs.input.value = e.target.textContent;
+
+    refs.input.dispatchEvent(event)
+})
