@@ -7,62 +7,10 @@ import "@pnotify/core/dist/BrightTheme.css";
 import "@pnotify/mobile/dist/PNotifyMobile.css";
 import "@pnotify/countdown/dist/PNotifyCountdown.css";
 import './sass/main.scss';
-import { alert, defaultModules } from '@pnotify/core';
-import * as PNotifyCountdown from '@pnotify/countdown';
-import * as PNotifyMobile from '@pnotify/mobile/';
-defaultModules.set(PNotifyMobile, {});
+import { alert } from '@pnotify/core';
+import notificationOptions from './js/notificationSettings.js';
 const event = new Event('input');
-
-const notificationOptions = {
-    toMachResults: {
-        type: 'error',
-        title: 'Too many matches found.',
-        text: 'Please enter specific query!',
-        delay: 2000,
-        modules: new Map([
-            ...defaultModules,
-            [PNotifyCountdown, {}]
-        ])
-    },
-    noResult: {
-        type: 'error',
-        title: 'No matches found.',
-        text: 'Please enter different query!',
-        delay: 2000,
-        modules: new Map([
-            ...defaultModules,
-            [PNotifyCountdown, {
-
-            }]
-        ])
-    },
-    successResult: {
-        type: 'success',
-        title: 'Country found.',
-        delay: 2000,
-        // text: 'Please enter different query!',
-        modules: new Map([
-            ...defaultModules,
-            [PNotifyCountdown, {
-
-            }]
-        ])
-    },
-    coupleResults: {
-        type: 'notice',
-        title: 'Found more than one country.',
-        text: 'Choose country you are searching for!',
-        delay: 3000,
-        // text: 'Please enter different query!',
-        modules: new Map([
-            ...defaultModules,
-            [PNotifyCountdown, {
-
-            }]
-        ])
-    },
-};
-
+// refs to HTML object
 const refs = {
     countryCard: document.querySelector('.country-card'),
     input: document.querySelector('#search'),
