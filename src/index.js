@@ -4,12 +4,12 @@ import resultTmp from "./templates/resultTmp.hbs";
 import debounce from "lodash.debounce";
 import "@pnotify/core/dist/PNotify.css";
 import "@pnotify/core/dist/BrightTheme.css";
-import "@pnotify/mobile/dist/PNotifyMobile.css"
-import "@pnotify/countdown/dist/PNotifyCountdown.css"
+import "@pnotify/mobile/dist/PNotifyMobile.css";
+import "@pnotify/countdown/dist/PNotifyCountdown.css";
 import { alert, defaultModules } from '@pnotify/core';
 import * as PNotifyCountdown from '@pnotify/countdown';
 import * as PNotifyMobile from '@pnotify/mobile/';
-defaultModules.set(PNotifyMobile, {})
+defaultModules.set(PNotifyMobile, {});
 const event = new Event('input');
 
 const notificationOptions = {
@@ -60,23 +60,23 @@ const notificationOptions = {
             }]
         ])
     },
-}
+};
 
 const refs = {
     countryCard: document.querySelector('.country-card'),
     input: document.querySelector('#search'),
     resultList: document.querySelector('.result-list'),
-}
+};
 
 const onSearch = (event) => {
     let value = event.target.value;
     if (!value) { return }
     fetchCountries(event.target.value).then(render);
-}
+};
 
 const renderCard = (data) => {
-    refs.countryCard.insertAdjacentHTML("beforeend", countryCardTmp(data))
-}
+    refs.countryCard.insertAdjacentHTML("beforeend", countryCardTmp(data));
+};
 
 const renderResultList = (data) => {
     refs.resultList.innerHTML = '';
@@ -103,12 +103,11 @@ const render = (data) => {
     } else {
         alert(notificationOptions.noResult);
     }
-}
+};
 
 refs.input.addEventListener('input', debounce(onSearch, 500));
 refs.resultList.addEventListener('click', function selected(e) {
     refs.input.value = '';
     refs.input.value = e.target.textContent;
-
-    refs.input.dispatchEvent(event)
+    refs.input.dispatchEvent(event);
 })
