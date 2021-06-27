@@ -10,14 +10,25 @@
       integrity="sha512-ISS7cAi1PEhQ8jnbJpJZMd29NlhNj4AWYyLOSp2CE/CsHxTCu+r+t0D2yoJudVrd0/8fTVPUVDzY5Tvli75u/g=="
       crossorigin="anonymous"
     />
+
+    <link rel="stylesheet" href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css" />
   </head>
   <body>
-    <input list="result" name="search" id="search" />
-    <!-- <input class="form-control-sm" id="search" type="text" /> -->
-    <ul class="result-list" id="result-list"></ul>
+    <div class="container">
+      <div class="autocomplete">
+        <input
+          autocomplete="off"
+          class="autocomplete-input"
+          type="search"
+          id="search"
+          placeholder="Type query"
+          aria-label="Search"
+        />
+        <ul class="result-list autocomplete-result-list hidden list"></ul>
+      </div>
+      <div class="country-card"></div>
+    </div>
 
-    <div class="country-card"></div>
-    <script src="./js/select.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>
