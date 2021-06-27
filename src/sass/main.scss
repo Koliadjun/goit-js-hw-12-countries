@@ -1,7 +1,99 @@
-/*
- * Главный файл стилей.
- * Все паршалы подключаются сюда.
- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
 
-// Стили для файла с примером HTML-фрагмента
-@import './example';
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  font-style: normal;
+  color: white;
+  background-image: url('https://www.asiapowerforum.com/wp-content/uploads/2014/10/background-img-slider.jpg');
+}
+
+.autocomplete {
+  color: black;
+  margin-top: 200px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 300px;
+}
+.autocomplete-result-list.hidden {
+  position: absolute;
+  z-index: 1;
+
+  box-sizing: border-box;
+  visibility: hidden;
+  pointer-events: none;
+}
+.country-card-title {
+  margin-bottom: 30px;
+}
+.country-card-wrapper {
+  display: block;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.country-card-title {
+  text-align: center;
+}
+.country-card-list {
+  /* display: flex; */
+  width: 50%;
+
+  margin-right: 30px;
+}
+.country-card-list-item {
+  justify-content: space-between;
+  display: flex;
+}
+.country-card-list-title {
+  margin-bottom: 15px;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  display: block;
+  text-decoration: none;
+}
+.container {
+  min-width: 320px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 20px;
+  padding-left: 20px;
+
+  @media screen and (min-width: 480px) {
+    width: 480px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 768px;
+    padding-right: 34px;
+    padding-left: 34px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 1280px;
+    padding-right: 115px;
+    padding-left: 115px;
+  }
+}
