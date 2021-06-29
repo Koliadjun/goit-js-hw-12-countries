@@ -16,7 +16,8 @@ img {
 
 body {
   font-style: normal;
-  color: #fff;
+  color: #000;
+  font-weight: 600;
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url('../images/background-img-slider.jpg');
@@ -39,7 +40,14 @@ body {
   pointer-events: none;
 }
 .country-card {
-  background-color: rgba($color: #000, $alpha: 0);
+  padding: 30px;
+  // box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.15);
+
+  backdrop-filter: blur(5px);
 }
 .country-card-title {
   margin-bottom: 30px;
