@@ -1,4 +1,5 @@
 import fetchCountries from "./js/fetchCountries.js";
+import fetchBackground from "./js/fetchBackground.js";
 import countryCardTmp from "./templates/countryTpl.hbs";
 import resultTmp from "./templates/resultTmp.hbs";
 import debounce from "lodash.debounce";
@@ -16,15 +17,27 @@ const refs = {
     input: document.querySelector('#search'),
     resultList: document.querySelector('.result-list'),
 };
-
+const setBackgroundImg = (data) => {
+    let randomImgId = getRandomInt(0, data.hits.length);
+    let url = data.hits[randomImgId].largeImageURL;
+    document.body.style.backgroundImage = `url(${url})`;
+}
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
+}
 const onSearch = (event) => {
     let value = event.target.value;
     if (!value) { return }
     fetchCountries(event.target.value).then(render);
+
 };
 
 const renderCard = (data) => {
     refs.countryCard.insertAdjacentHTML("beforeend", countryCardTmp(data));
+    fetchBackground(data.capital).then((res => setBackgroundImg(res)));
+
     refs.resultList.innerHTML = '';
 };
 
