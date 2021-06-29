@@ -16,7 +16,7 @@ img {
 
 body {
   font-style: normal;
-  color: white;
+  color: #fff;
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -38,6 +38,9 @@ body {
   box-sizing: border-box;
   visibility: hidden;
   pointer-events: none;
+}
+.country-card {
+  background-color: rgba($color: #ffffff, $alpha: 0.3);
 }
 .country-card-title {
   margin-bottom: 30px;
