@@ -18,8 +18,10 @@ body {
   font-style: normal;
   color: #000;
   font-weight: 600;
-  background-repeat: no-repeat;
-  background-image: url('../images/background-img-slider.jpg');
+  background: url('../images/background-img-slider.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
 }
 
 .autocomplete {
@@ -38,9 +40,9 @@ body {
   visibility: hidden;
   pointer-events: none;
 }
-.country-card {
+.country-card.visible {
   padding: 30px;
-  // box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+
   border-radius: 5px;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
   border-radius: 5px;
