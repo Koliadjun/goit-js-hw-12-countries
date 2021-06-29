@@ -18,6 +18,7 @@ body {
   font-style: normal;
   color: #fff;
   background-repeat: no-repeat;
+  background-size: cover;
   background-image: url('../images/background-img-slider.jpg');
 }
 
@@ -38,7 +39,7 @@ body {
   pointer-events: none;
 }
 .country-card {
-  background-color: rgba($color: #ffffff, $alpha: 0.3);
+  background-color: rgba($color: #000, $alpha: 0);
 }
 .country-card-title {
   margin-bottom: 30px;
