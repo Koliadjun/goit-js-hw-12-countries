@@ -35,6 +35,7 @@ const onSearch = (event) => {
 };
 
 const renderCard = (data) => {
+    refs.countryCard.classList.add('visible');
     refs.countryCard.insertAdjacentHTML("beforeend", countryCardTmp(data));
     fetchBackground(data.capital).then((res => setBackgroundImg(res)));
 
@@ -50,6 +51,7 @@ const renderResultList = (data) => {
 
 const render = (data) => {
     const countryQuantity = data.length;
+    refs.countryCard.classList.remove('visible');
     refs.countryCard.innerHTML = '';
     if (countryQuantity) {
         if (countryQuantity === 1) {
